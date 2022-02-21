@@ -3,10 +3,13 @@
 @section('title', 'Editar Página')
 
 @section('content_header')
-    <h1>Editar Página</h1>
+
 @endsection
 
 @section('content')
 
+    <div><h1>{{$page->title}}</h1></div>
+
+    <p>{!! $page->body !!}</p>
 
 @endsection

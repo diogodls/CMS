@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +35,16 @@ Route::prefix('painel')->group(function (){
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::resource('users', UserController::class);
+    Route::resource('pages', PageController::class);
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profilesave', [ProfileController::class, 'save'])->name('profile.save');
+
+    Route::get('settings', [SettingController::class, 'index'])->name('settings');
+    Route::put('settingssave', [SettingController::class, 'save'])->name('settings.save');
+
 });
+
+Route::fallback([\App\Http\Controllers\Site\PageController::class, 'index']);
 
 Auth::routes();
